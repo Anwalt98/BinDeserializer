@@ -26,7 +26,6 @@ public class EEP_ParamStruct {
     int		_IFM_Mode;
     float		_IFM_Lowest_Value;
     float		_IFM_PulseWeight;
-
     float		_PWM_RangeFI_InLo_;
     float       _PWM_RangeFI_InHi_;
     float       _PWM_RangeFI_OutLo_;
@@ -35,9 +34,7 @@ public class EEP_ParamStruct {
     float       _PWM_RangeIDAC_InHi_;
     int		    _PWM_RangeIDAC_OutLo_;
     int         _PWM_RangeIDAC_OutHi_;
-
     float		_Doze_Level1_10ls;
-
     float		_MO_CmpLevel1;
     float		_MO_CmpLevel2;
 
