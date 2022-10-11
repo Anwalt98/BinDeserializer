@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        System.out.println("Введите путь к bin файлу для десераилизации");
+        System.out.println("Insert .bin file's path to deserialize.");
         Scanner sc = new Scanner(System.in);
         String pathStr = sc.nextLine();
         Path path = Path.of(pathStr);
@@ -15,8 +15,16 @@ public class Main {
 
     public static void validatePath(String path){
         File file = new File(path);
-        if (file.length() != 127 || !file.isFile()){
-            throw new IllegalArgumentException("Given path is incorrect");
+        if (!file.isFile()){
+            throw new IllegalArgumentException("There is no given file.");
+        }
+        if (file.length() != 127){
+            throw new IllegalArgumentException("Given path is incorrect, required size is "
+                    + 127
+                    + " , but provided file has "
+                    + file.length()
+                    +" bits size."
+                    );
         }
     }
 }

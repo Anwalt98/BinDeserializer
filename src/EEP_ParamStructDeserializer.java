@@ -6,29 +6,6 @@ import java.nio.file.Path;
 
 public class EEP_ParamStructDeserializer {
 
-    //методами ниже переводим uint_8, uint_16 из structa в Java-int,  uint_32 в Long
-    //т.к. в Java нет unsigned типов
-    private static int uint_8ToInt(byte byteToConvert){
-        return byteToConvert & 0xFF;
-    }
-
-    private static int uint_16ToInt(byte[] bytes) {
-        ByteBuffer bb = ByteBuffer.wrap(bytes);
-//        bb = bb.order(ByteOrder.LITTLE_ENDIAN);
-        int n = 0;
-        while (bb.hasRemaining()) {
-            short s = bb.getShort();
-            n = 0xFFFF & s;
-        }
-        return n;
-    }
-
-    private static long uint_32ToLong(byte[] bytes){
-            ByteBuffer buffer = ByteBuffer.allocate(4).put(bytes);
-            buffer.position(0);
-            return buffer.getInt() & 0xFFFFFFFFL;
-    }
-
     public static EEP_ParamStruct deserialize(Path path) throws IOException {
         EEP_ParamStruct eep_paramStruct = new EEP_ParamStruct();
         byte[] bytes = Files.readAllBytes(path);
@@ -83,6 +60,28 @@ public class EEP_ParamStructDeserializer {
 
 
 
+    //методами ниже переводим uint_8, uint_16 из structa в Java-int,  uint_32 в Long
+    //т.к. в Java нет unsigned типов
+    private static int uint_8ToInt(byte byteToConvert){
+        return byteToConvert & 0xFF;
+    }
+
+    private static int uint_16ToInt(byte[] bytes) {
+        ByteBuffer bb = ByteBuffer.wrap(bytes);
+//        bb = bb.order(ByteOrder.LITTLE_ENDIAN);
+        int n = 0;
+        while (bb.hasRemaining()) {
+            short s = bb.getShort();
+            n = 0xFFFF & s;
+        }
+        return n;
+    }
+
+    private static long uint_32ToLong(byte[] bytes){
+        ByteBuffer buffer = ByteBuffer.allocate(4).put(bytes);
+        buffer.position(0);
+        return buffer.getInt() & 0xFFFFFFFFL;
+    }
 
     public static void reverse(byte[] array) {
 
