@@ -53,7 +53,7 @@ public class EEP_ParamStructDeserializer {
         eep_paramStruct._MC_U2 = wrappedBuffer.getFloat(113);
         eep_paramStruct._MC_Q1 = wrappedBuffer.getFloat(117);
         eep_paramStruct._MC_U1 = wrappedBuffer.getFloat(121);
-        eep_paramStruct._EEPROM_Flags = uint_16ToInt(new byte[]{bytes[126],bytes[0]});
+        eep_paramStruct._EEPROM_Flags = uint_16ToInt(new byte[]{bytes[125],bytes[126]});
 
         return eep_paramStruct;
     }
@@ -68,7 +68,6 @@ public class EEP_ParamStructDeserializer {
 
     private static int uint_16ToInt(byte[] bytes) {
         ByteBuffer bb = ByteBuffer.wrap(bytes);
-//        bb = bb.order(ByteOrder.LITTLE_ENDIAN);
         int n = 0;
         while (bb.hasRemaining()) {
             short s = bb.getShort();
